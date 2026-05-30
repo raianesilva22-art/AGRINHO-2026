@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque | AgroCalculadora</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <h1>🌱 AgroCalculadora & Gestão Rural</h1>
+            <p class="frase-tema">💚 Agro forte, futuro sustentável 💚</p>
+            <p>Ferramentas práticas e precisas para o dia a dia do produtor rural</p>
+        </div>
+    </header>
+
+    <nav class="menu">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="calculadora.html">Calculadora de Insumos</a></li>
+                <li><a href="estoque.html" class="ativo">Controle de Estoque</a></li>
+                <li><a href="atividades.html">Agenda Rural</a></li>
+                <li><a href="medidas.html">Conversor de Medidas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="conteudo-principal">
+        <div class="container">
+            <section>
+                <h2>📦 Controle de Estoque Rural</h2>
+                <p>Gerencie todos os insumos, produtos e materiais da sua propriedade. Saiba o que tem, o que já usou e quando repor, evitando faltas ou desperdícios que causam prejuízo e impacto ao meio ambiente.</p>
+
+                <form id="form-estoque" class="formulario">
+                    <div class="grupo-campo">
+                        <label for="nome-produto">Nome do Produto / Insumo:</label>
+                        <input type="text" id="nome-produto" required placeholder="Ex: Adubo NPK, Semente de Milho, Defensivo...">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="categoria">Categoria:</label>
+                        <select id="categoria" required>
+                            <option value="Fertilizante">Fertilizante / Adubo</option>
+                            <option value="Defensivo">Defensivo Agrícola</option>
+                            <option value="Semente">Sementes</option>
+                            <option value="Corretivo">Corretivo de Solo</option>
+                            <option value="Ferramenta">Ferramentas / Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="quantidade">Quantidade Atual:</label>
+                        <input type="number" id="quantidade" step="0.01" min="0.01" required>
+                        <select id="unidade">
+                            <option value="kg">Quilogramas (kg)</option>
+                            <option value="L">Litros (L)</option>
+                            <option value="sacas">Sacas de 60kg</option>
+                            <option value="unidades">Unidades</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="validade">Data de Validade (se houver):</label>
+                        <input type="date" id="validade">
+                    </div>
+
+                    <button type="submit" class="botao">Cadastrar Produto</button>
+                </form>
+
+                <h3 style="margin: 2rem 0 1rem;">📋 Estoque Cadastrado</h3>
+                <div class="formulario">
+                    <table class="tabela-dados">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
+                                <th>Validade</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-estoque">
+                            <tr>
+                                <td colspan="6" style="text-align:center; color:#666; padding: 1rem;">
+                                    Nenhum produto cadastrado ainda. Comece a cadastrar acima!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="aviso">
+                    <p><strong>💚 Agro forte, futuro sustentável:</strong> Manter o estoque organizado é garantir que você use produtos dentro do prazo correto, economize dinheiro e evite descarte inadequado de materiais, preservando o nosso meio ambiente.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>Projeto desenvolvido para o Concurso de Programação Web | Ensino Médio - 2026</p>
+            <p>💚 Agro forte, futuro sustentável 💚</p>
+        </div>
+    </footer>
+
+    <script src="js/estoque.js"></script>
+</body>
+</html>
