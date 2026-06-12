@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="author" content="Seu Nome">
+    <meta name="description" content="Conversor de Medidas - Comprimento, Massa e muito mais">
+    <meta name="keywords" content="medidas, conversor, comprimento, massa, km, m, cm, kg, g">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Conversor de Medidas</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+    <script src="medidas.js" defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cabecalho {
+            text-align: center;
+            background: linear-gradient(135deg, #16a085, #1abc9c);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .botao-voltar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            background-color: rgba(0,0,0,0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .botao-voltar:hover {
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .cabecalho h1 {
+            font-size: 1.7rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #16a085;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .area-conversao {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto 1fr;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background-color: #fff;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1abc9c;
+        }
+
+        .texto-para {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .botao-principal {
+            background-color: #16a085;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .botao-principal:hover {
+            background-color: #117a65;
+        }
+
+        .resultado {
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1abc9c;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0e6251;
+        }
+
+        /* ⚡ CELULAR: Ajusta tudo para ficar um abaixo do outro */
+        @media (max-width: 600px) {
+            .area-conversao {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .texto-para {
+                text-align: center;
+                margin: 5px 0;
+            }
+
+            .cabecalho h1 {
+                font-size: 1.3rem;
+                padding-left: 40px;
+            }
+
+            .botao-voltar {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cabecalho">
+            <a href="index.html" class="botao-voltar">← Voltar</a>
+            <h1>📏 Conversor de Medidas</h1>
+        </header>
+
+        <main>
+            <!-- CONVERSOR DE COMPRIMENTO -->
+            <section class="card">
+                <h2>📏 Comprimento</h2>
+                <div class="area-conversao">
+                    <input type="number" id="valorComprimento" placeholder="Digite o valor" min="0" step="any">
+                    
+                    <select id="medidaOrigemComp">
+                        <option value="km">Quilômetro (km)</option>
+                        <option value="m" selected>Metro (m)</option>
+                        <option value="cm">Centímetro (cm)</option>
+                        <option value="mm">Milímetro (mm)</option>
+                    </select>
+
+                    <span class="texto-para">para</span>
+
+                    <select id="medidaDestinoComp">
+                        <option value="km">Quilômetro (km)</option>
+                        <option value="m">Metro (m)</option>
+                        <option value="cm" selected>Centímetro (cm)</option>
+                        <option value="mm">Milímetro (mm)</option>
+                    </select>
+
+                    <button class="botao-principal" onclick="converterComprimento()">Converter</button>
+                </div>
+
+                <div class="resultado">
+                    Resultado: <span id="resultadoComprimento">0,00</span>
+                </div>
+            </section>
+
+            <!-- CONVERSOR DE MASSA -->
+            <section class="card">
+                <h2>⚖️ Massa (Peso)</h2>
+                <div class="area-conversao">
+                    <input type="number" id="valorMassa" placeholder="Digite o valor" min="0" step="any">
+                    
+                    <select id="medidaOrigemMassa">
+                        <option value="kg" selected>Quilograma (kg)</option>
+                        <option value="g">Grama (g)</option>
+                        <option value="mg">Miligrama (mg)</option>
+                    </select>
+
+                    <span class="texto-para">para</span>
+
+                    <select id="medidaDestinoMassa">
+                        <option value="kg">Quilograma (kg)</option>
+                        <option value="g" selected>Grama (g)</option>
+                        <option value="mg">Miligrama (mg)</option>
+                    </select>
+
+                    <button class="botao-principal" onclick="converterMassa()">Converter</button>
+                </div>
+
+                <div class="resultado">
+                    Resultado: <span id="resultadoMassa">0,00</span>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
