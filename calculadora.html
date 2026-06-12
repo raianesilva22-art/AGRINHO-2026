@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!-- LINHA OBRIGATÓRIA PARA FUNCIONAR EM QUALQUER TELA -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- CONFIGURAÇÕES HTML5 COMPLETAS -->
+    <meta name="author" content="Seu Nome">
+    <meta name="description" content="Calculadora Completa - Soma, Subtrai, Multiplica e Divide">
+    <meta name="keywords" content="calculadora, matemática, contas, sistema web">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Calculadora Completa</title>
+    
+    <!-- LIGAÇÃO COM OS ARQUIVOS (MESMOS NOMES DE SEMPRE) -->
+    <link rel="stylesheet" href="estilo.css">
+    <script src="calculadora.js" defer></script>
+
+    <!-- ESTILO PRÓPRIO E SEGURO -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cabecalho {
+            text-align: center;
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .botao-voltar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            background-color: rgba(0,0,0,0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .botao-voltar:hover {
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .cabecalho h1 {
+            font-size: 1.7rem;
+        }
+
+        .calculadora {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        #tela {
+            width: 100%;
+            height: 70px;
+            font-size: 2rem;
+            text-align: right;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            pointer-events: none;
+        }
+
+        .botoes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            padding: 16px 10px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .botao-numero {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .botao-numero:hover {
+            background-color: #d0d7d9;
+        }
+
+        .botao-operador {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .botao-operador:hover {
+            background-color: #2980b9;
+        }
+
+        .botao-limpar {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .botao-limpar:hover {
+            background-color: #c0392b;
+        }
+
+        .botao-igual {
+            grid-column: span 4;
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .botao-igual:hover {
+            background-color: #219653;
+        }
+
+        /* ⚡ CELULAR: TELAS MENORES QUE 500px */
+        @media (max-width: 500px) {
+            .cabecalho h1 {
+                font-size: 1.3rem;
+                padding-left: 40px;
+            }
+
+            .botao-voltar {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            #tela {
+                height: 60px;
+                font-size: 1.6rem;
+            }
+
+            button {
+                padding: 14px 8px;
+                font-size: 1.1rem;
+            }
+
+            .calculadora {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- CABEÇALHO COMPLETO COM BOTÃO DE VOLTAR -->
+        <header class="cabecalho">
+            <a href="index.html" class="botao-voltar">← Voltar</a>
+            <h1>🧮 Calculadora</h1>
+        </header>
+
+        <!-- ÁREA DA CALCULADORA FUNCIONAL -->
+        <main>
+            <div class="calculadora">
+                <!-- TELA DE EXIBIÇÃO -->
+                <input type="text" id="tela" readonly placeholder="0">
+
+                <!-- GRADE DE BOTÕES -->
+                <div class="botoes-grid">
+                    <button class="botao-numero" onclick="adicionar('7')">7</button>
+                    <button class="botao-numero" onclick="adicionar('8')">8</button>
+                    <button class="botao-numero" onclick="adicionar('9')">9</button>
+                    <button class="botao-operador" onclick="adicionar('/')">/</button>
+
+                    <button class="botao-numero" onclick="adicionar('4')">4</button>
+                    <button class="botao-numero" onclick="adicionar('5')">5</button>
+                    <button class="botao-numero" onclick="adicionar('6')">6</button>
+                    <button class="botao-operador" onclick="adicionar('*')">×</button>
+
+                    <button class="botao-numero" onclick="adicionar('1')">1</button>
+                    <button class="botao-numero" onclick="adicionar('2')">2</button>
+                    <button class="botao-numero" onclick="adicionar('3')">3</button>
+                    <button class="botao-operador" onclick="adicionar('-')">−</button>
+
+                    <button class="botao-numero" onclick="adicionar('0')">0</button>
+                    <button class="botao-numero" onclick="adicionar('.')">,</button>
+                    <button class="botao-limpar" onclick="limparTela()">C</button>
+                    <button class="botao-operador" onclick="adicionar('+')">+</button>
+
+                    <button class="botao-igual" onclick="calcularResultado()">=</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
