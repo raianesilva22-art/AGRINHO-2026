@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="author" content="Seu Nome">
+    <meta name="description" content="Controle de Estoque - Gerencie seus produtos">
+    <meta name="keywords" content="estoque, produtos, quantidade, valor, cadastro">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Controle de Estoque</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+    <script src="estoque.js" defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cabecalho {
+            text-align: center;
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .botao-voltar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            background-color: rgba(0,0,0,0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .botao-voltar:hover {
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .cabecalho h1 {
+            font-size: 1.7rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #d35400;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .linha-campos {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #e67e22;
+        }
+
+        .botao-principal {
+            background-color: #d35400;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .botao-principal:hover {
+            background-color: #a04000;
+        }
+
+        .tabela-responsiva {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #fdf2e9;
+        }
+
+        .vazio {
+            text-align: center;
+            color: #888;
+            padding: 30px !important;
+            font-style: italic;
+        }
+
+        .botao-acao {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .botao-excluir {
+            background-color: #e74c3c;
+        }
+
+        .botao-excluir:hover {
+            background-color: #c0392b;
+        }
+
+        /* ⚡ CELULAR: Ajusta os campos para ficar um abaixo do outro */
+        @media (max-width: 700px) {
+            .linha-campos {
+                grid-template-columns: 1fr;
+            }
+
+            .cabecalho h1 {
+                font-size: 1.3rem;
+                padding-left: 40px;
+            }
+
+            .botao-voltar {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cabecalho">
+            <a href="index.html" class="botao-voltar">← Voltar</a>
+            <h1>📦 Controle de Estoque</h1>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>Cadastrar Novo Produto</h2>
+                <form id="formularioProduto">
+                    <div class="linha-campos">
+                        <div class="grupo-campo">
+                            <label for="produto">Nome do Produto:</label>
+                            <input type="text" id="produto" required placeholder="Ex: Caderno, Caneta...">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="quantidade">Quantidade:</label>
+                            <input type="number" id="quantidade" min="1" required placeholder="0">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="preco">Preço (R$):</label>
+                            <input type="number" id="preco" step="0.01" min="0" required placeholder="0,00">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="botao-principal">Adicionar ao Estoque</button>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Produtos Cadastrados</h2>
+                <div class="tabela-responsiva">
+                    <table id="tabelaEstoque">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Preço Unit.</th>
+                                <th>Valor Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="vazio">Nenhum produto cadastrado ainda.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
