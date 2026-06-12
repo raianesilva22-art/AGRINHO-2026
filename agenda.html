@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="author" content="Seu Nome">
+    <meta name="description" content="Agenda de Contatos - Salve e gerencie seus contatos">
+    <meta name="keywords" content="agenda, contatos, telefone, endereço">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Agenda de Contatos</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+    <script src="agenda.js" defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cabecalho {
+            text-align: center;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .botao-voltar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            background-color: rgba(0,0,0,0.15);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .botao-voltar:hover {
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .cabecalho h1 {
+            font-size: 1.7rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #8e44ad;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .grupo-campo {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #9b59b6;
+        }
+
+        .botao-principal {
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .botao-principal:hover {
+            background-color: #7d3c98;
+        }
+
+        .item-contato {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .item-contato h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .item-contato p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .vazio {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 500px) {
+            .cabecalho h1 {
+                font-size: 1.3rem;
+                padding-left: 40px;
+            }
+            .botao-voltar {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cabecalho">
+            <a href="index.html" class="botao-voltar">← Voltar</a>
+            <h1>📅 Agenda de Contatos</h1>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>Adicionar Novo Contato</h2>
+                <form id="formularioContato">
+                    <div class="grupo-campo">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" required placeholder="Digite o nome da pessoa">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" required placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com">
+                    </div>
+
+                    <button type="submit" class="botao-principal">Salvar Contato</button>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Meus Contatos Salvos</h2>
+                <div id="listaContatos">
+                    <p class="vazio">Nenhum contato cadastrado ainda.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
